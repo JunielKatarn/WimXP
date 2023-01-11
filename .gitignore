@@ -475,3 +475,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# WimXP specifics
+DiskImages/
+Config.yaml

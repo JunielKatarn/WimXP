@@ -21,7 +21,7 @@ Key differences with XP2ESD:
 ## Usage
 ```pwsh
 # -Config defautls to 'Config.yaml'
-ConvertTo-WimXP.ps1 -Config $pathToConfigFile
+Create-WimXp.ps1 -Config $pathToConfigFile
 ```
 
 ## References
