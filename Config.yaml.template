@@ -1,12 +1,21 @@
+# Environment
+# Intermediate artifact directory.
+BuildPath: Build
+# Output artifact directory.
+TargetPath: Target
+# XP2ESD assets location.
+# Can be obtained at 
+
 WinXPISO:
   en_windows_xp_professional_with_service_pack_3_x86_cd_x14-80428.iso
 Win7ISO:
-  DiskImages\en_windows_7_ultimate_with_sp1_x64_dvd_u_677332.iso
+  DiskImages\en_windows_7_ultimate_with_sp1_x86_dvd_u_677460.iso
 Win10ISO:
-  DiskImages\en-us_windows_10_consumer_editions_version_22h2_updated_dec_2022_x64_dvd_ee4b259d.iso
+  DiskImages\Win10_22H2_English_x86.iso
 
 # Integrate custom drivers and software with nLite
 Integrate: false
+# Acceptable values: WIM, ESD
 Format: WIM
 
 # Display End User License Agreement
@@ -37,3 +46,6 @@ VMDriveType: VHD
 VirtualBoxPath: C:\Program Files\Oracle\VirtualBox
 OSType: WindowsXP
 VMVRamSize: 128MB
+
+# Dependencies
+WimlibPath: C:\ProgramData\chocolatey

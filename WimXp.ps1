@@ -15,9 +15,9 @@
 	https://github.com/JunielKatarn/WimXP
 #>
 
-Param(
-	# YAML settings. See https://github.com/timsutton/JunielKatarn/WimXP/main/Config.yaml.template
-	[System.IO.FileInfo] $Config = (Join-Path $PSScriptRoot, 'Config.yaml'),
+param(
+	# YAML settings. See https://github.com/JunielKatarn/WimXP/main/Config.yaml.template
+	[System.IO.FileInfo] $ConfigPath = (Join-Path $PSScriptRoot, 'Config.yaml'),
 
 	# Ignore interactive prompts
 	[switch] $Force
@@ -25,8 +25,45 @@ Param(
 
 function AutoSysPrep {
 	param (
+		[Parameter(Mandatory=$true)]
+		[hashtable] $Config
 	)
+
+	#TODO: Clean build paths?
+
+	#TODO: Apply updates INI?
+
+	if (!(Test-Path $Config.WinXPISO)) {
+		Write-Error 'Windows XP disk image not found:'
+		Write-Error "[$Config.WinXPISO]"
+		exit
+	}
+
+	Write-Host 'Extracting ISO'
+
+	Expand-7Zip -ArchiveFileName $Config.WinXPISO -TargetPath $Config.BuildPath
+	$buildPath = [System.IO.DirecoryInfo] $Config.BuildPath
+	#rd /q /s "%~dp0_output\[BOOT]" >nul
+
+	#TODO: Support integration
+
+	Write-Host 'Adding Auto-Sysprep'
+
+	# Add Auto-Sysprep support files
+	mkdir -Force (Join-Path $buildPath '$OEM$')
+	New-Item -ItemType SymbolicLink -Value "$PSScriptRoot\Auto-Sysprep.reg" -Path "$buildPath\`$OEM`$\Auto-Sysprep.reg"
+	Write-Output '[COMMANDS]' | Out-File -Encoding utf8 "$buildPath\`$OEM`$\cmdlines.txt"
+	Write-Output 'regedit /s Auto-Sysprep.reg' | Out-File -Append "$buildPath\`$OEM`$\cmdlines.txt"
+
+	mkdir -Force (Join-Path $buildPath '$OEM$' '$1')
 	
+
+	#TODO: Eventually execute this:
+	#[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]
+	#"MyFactoryLogon"="C:\\sysprep\\Launch.cmd"
+
+
+
 	#New-VHD -Path vm0.vhd -SizeBytes 10gb -Dynamic
 	#New-VM -Name vm0 -VHDPath vm0.vhd -MemoryStartupBytes 1GB -BootDevice CD -Generation 1
 	#Set-VM -Name erasme0 -CheckpointType Disabled
