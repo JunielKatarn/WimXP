@@ -1,39 +1,39 @@
-- WinXPISO:
+WinXPISO:
   en_windows_xp_professional_with_service_pack_3_x86_cd_x14-80428.iso
-- Win7ISO:
+Win7ISO:
   DiskImages\en_windows_7_ultimate_with_sp1_x64_dvd_u_677332.iso
-- Win10ISO:
+Win10ISO:
   DiskImages\en-us_windows_10_consumer_editions_version_22h2_updated_dec_2022_x64_dvd_ee4b259d.iso
 
 # Integrate custom drivers and software with nLite
-- Integrate: false
-- Format: WIM
+Integrate: false
+Format: WIM
 
 # Display End User License Agreement
-- ShowEula: true
+ShowEula: true
 # Don't show Out Of Box Experience
-- SkipOOBE: false
+SkipOOBE: false
 # Sample fake product key. You must provide a valid one.
-- ProductKey: ABCD1-DEFG2-HIJK3-LMNO4-PQRS5
+ProductKey: ABCD1-DEFG2-HIJK3-LMNO4-PQRS5
 
-- VirtualDiskPath: DiskImages\XP.vhd
+VirtualDiskPath: DiskImages\XP.vhd
 
-- ImageName: Windows XP Professional
-- ImageDescription: Windows XP Professional SP3+
-- ImageFlag: Professional
+ImageName: Windows XP Professional
+ImageDescription: Windows XP Professional SP3+
+ImageFlag: Professional
 
-- DriveLabel: WXPSysprep
-- DriveLetter: X
+DriveLabel: WXPSysprep
+DriveLetter: X
 # Integrate Windows 7 Dism into XP host
-- AddDism: true
+AddDism: true
 
 # Virtual Machine settings
-- VMName: WindowsXPSysprep
-- VMRamSize: 1GB
-- VMDriveSize: 10GB
-- VMDriveType: VHD
+VMName: WindowsXPSysprep
+VMRamSize: 1GB
+VMDriveSize: 10GB
+VMDriveType: VHD
 
 # VirtualBox settings
-- VirtualBoxPath: C:\Program Files\Oracle\VirtualBox
-- OSType: WindowsXP
-- VMVRamSize: 128MB
+VirtualBoxPath: C:\Program Files\Oracle\VirtualBox
+OSType: WindowsXP
+VMVRamSize: 128MB
